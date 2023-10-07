@@ -1,0 +1,118 @@
+﻿@page
+@model ProductAchat.Pages.Produits.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<style>
+    /* Custom CSS for the form */
+    .form-container {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border: 1px solid #d1d1d1;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+        .form-container h1 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+        .form-group label {
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+    .form-control {
+        font-size: 1.2rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 10px;
+        width: 100%;
+    }
+
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+
+    .text-danger {
+        color: #dc3545;
+        font-size: 1.1rem;
+    }
+
+    .btn-primary {
+        font-size: 1.2rem;
+        background-color: #007bff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        color: #fff;
+        width: 100%;
+        transition: background-color 0.3s;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+</style>
+
+<div class="container form-container">
+    <h1>Create a New Product</h1>
+
+    <form method="post" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-group">
+            <label asp-for="Produit.name" class="control-label">Product Name</label>
+            <input asp-for="Produit.name" class="form-control" placeholder="Enter product name" required />
+            <span asp-validation-for="Produit.name" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Produit.description" class="control-label">Description</label>
+            <textarea asp-for="Produit.description" class="form-control" rows="4" placeholder="Enter product description" required></textarea>
+            <span asp-validation-for="Produit.description" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Produit.stock" class="control-label">Stock</label>
+            <input asp-for="Produit.stock" class="form-control" type="number" placeholder="Enter product stock" required />
+            <span asp-validation-for="Produit.stock" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Produit.prix" class="control-label">Price</label>
+            <input asp-for="Produit.prix" class="form-control" type="number" step="0.01" placeholder="Enter product price" required />
+            <span asp-validation-for="Produit.prix" class="text-danger"></span>
+        </div>
+
+        @{
+            string productImageValue = "your_value_here";
+        }
+
+        <input type="hidden" name="Produit.imageUrl" value="@productImageValue">
+
+        <div class="form-group">
+            <label asp-for="ImageFile" class="control-label">Product Image</label>
+            <input asp-for="ImageFile" name="ImageFile" type="file" class="form-control" required />
+            <span asp-validation-for="ImageFile" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Create Product</button>
+        </div>
+    </form>
+</div>

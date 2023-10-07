@@ -1,0 +1,104 @@
+﻿@page
+@model ProductAchat.Pages.Produits.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<style>
+    /* Custom CSS for the details page */
+    .details-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 30px;
+        background-color: #f8f9fa;
+        border: 1px solid #d1d1d1;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+        .details-container h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+
+        .details-container hr {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-color: #d1d1d1;
+        }
+
+    .details-row {
+        margin-bottom: 20px;
+    }
+
+        .details-row dt {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .details-row dd {
+            font-size: 1.2rem;
+            margin-left: 0;
+        }
+
+    .details-image img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .details-actions {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+        .details-actions a {
+            font-size: 1.2rem;
+            margin-right: 10px;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+            .details-actions a:hover {
+                color: #0056b3;
+            }
+
+    .description-text {
+        font-size: 1.2rem;
+        white-space: pre-wrap; /* Wrap long lines in description */
+    }
+</style>
+
+<div class="container details-container">
+    <h1>Product Details</h1>
+
+    <div class="details-row">
+        <h4>Product Information</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">Product Name:</dt>
+            <dd class="col-sm-10">@Html.DisplayFor(model => model.Produit.name)</dd>
+
+            <dt class="col-sm-2">Description:</dt>
+            <dd class="col-sm-10 description-text">@Html.DisplayFor(model => model.Produit.description)</dd>
+
+            <dt class="col-sm-2">Stock:</dt>
+            <dd class="col-sm-10">@Html.DisplayFor(model => model.Produit.stock)</dd>
+
+            <dt class="col-sm-2">Price (USD):</dt>
+            <dd class="col-sm-10">@Html.DisplayFor(model => model.Produit.prix)</dd>
+
+            <dt class="col-sm-2">Product Image:</dt>
+            <dd class="col-sm-10 details-image">
+                <img src="@Model.Produit.imageUrl" alt="Product Image" />
+            </dd>
+        </dl>
+    </div>
+
+    <div class="details-actions">
+        <a asp-page="./Edit" asp-route-id="@Model.Produit?.id">Edit</a> |
+        <a asp-page="./Index">Back to List</a>
+    </div>
+</div>
